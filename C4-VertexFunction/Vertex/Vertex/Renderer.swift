@@ -69,7 +69,7 @@ class Renderer: NSObject {
         pipelineDescriptor.fragmentFunction = fragmentFunction
         pipelineDescriptor.colorAttachments[0].pixelFormat =
         metalView.colorPixelFormat
-        pipelineDescriptor.vertexDescriptor = MTLVertexDescriptor.defaultLayout
+//        pipelineDescriptor.vertexDescriptor = MTLVertexDescriptor.defaultLayout
         do {
             pipelineState =
             try device.makeRenderPipelineState(
@@ -104,6 +104,8 @@ extension Renderer: MTKViewDelegate {
             return
         }
         
+        renderEncoder.setRenderPipelineState(pipelineState)
+        
         timer += 0.005
         var currentTime = sin(timer)
         
@@ -112,25 +114,36 @@ extension Renderer: MTKViewDelegate {
             length: MemoryLayout<Float>.stride,
             index: 11) 
         
-        renderEncoder.setRenderPipelineState(pipelineState)
+        var count: Int = 50
         
-        // do drawing here
-        renderEncoder.setVertexBuffer(
-            quad.vertexBuffer,
-            offset: 0,
+        renderEncoder.setVertexBytes(
+            &count,
+            length: MemoryLayout<Int>.stride,
             index: 0)
         
-        renderEncoder.setVertexBuffer(
-            quad.colorBuffer,
-            offset: 0,
-            index: 1)
         
-        renderEncoder.drawIndexedPrimitives(
+        // do drawing here
+//        renderEncoder.setVertexBuffer(
+//            quad.vertexBuffer,
+//            offset: 0,
+//            index: 0)
+        
+//        renderEncoder.setVertexBuffer(
+//            quad.colorBuffer,
+//            offset: 0,
+//            index: 1)
+        
+//        renderEncoder.drawIndexedPrimitives(
+//            type: .point,
+//            indexCount: quad.indices.count,
+//            indexType: .uint16,
+//            indexBuffer: quad.indexBuffer,
+//            indexBufferOffset: 0)
+        
+        renderEncoder.drawPrimitives(
             type: .point,
-            indexCount: quad.indices.count,
-            indexType: .uint16,
-            indexBuffer: quad.indexBuffer,
-            indexBufferOffset: 0)
+            vertexStart: 0,
+            vertexCount: count)
         
         renderEncoder.endEncoding()
         guard let drawable = view.currentDrawable else {
