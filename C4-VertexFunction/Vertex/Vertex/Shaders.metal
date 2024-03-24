@@ -64,7 +64,7 @@ vertex VertexOut vertex_main(
 {
     float radius = 0.8;
     float pi = 3.14159;
-    float current = float(vertexID) / float(count);
+    float current = float(vertexID) / float(count) + timer;
     float2 position;
     position.x = radius * cos(2 * pi * current);
     position.y = radius * sin(2 * pi * current);
