@@ -88,11 +88,7 @@ class Renderer: NSObject {
             alpha: 1.0)
         metalView.delegate = self
         
-        let translation = float4x4(translation: [0.5, -0.4, 0])
-        let rotation = float4x4(rotation: [0, 0, Float(45).degreesToRadians])
-        uniforms.modelMatrix = translation * rotation
-        
-        uniforms.viewMatrix = float4x4(translation: [0.8, 0, 0]).inverse
+        mtkView(metalView, drawableSizeWillChange: metalView.drawableSize)
     }
 }
 
@@ -101,6 +97,15 @@ extension Renderer: MTKViewDelegate {
         _ view: MTKView,
         drawableSizeWillChange size: CGSize
     ) {
+        let aspect = Float(view.bounds.width) / Float(view.bounds.height)
+        let projectionMatrix = float4x4(
+            projectionFov: Float(70).degreesToRadians,
+            near: 0.1,
+            far: 100,
+            aspect: aspect
+        )
+        uniforms.projectionMatrix = projectionMatrix
+        
     }
     
     func draw(in view: MTKView) {
@@ -114,13 +119,13 @@ extension Renderer: MTKViewDelegate {
         }
         
         renderEncoder.setRenderPipelineState(pipelineState)
-        renderEncoder.setTriangleFillMode(.lines)
+//        renderEncoder.setTriangleFillMode(.lines)
         
         timer += 0.005
-        uniforms.viewMatrix = float4x4.identity
-        let translationMatrix = float4x4(translation: [0, -0.6, 0])
-        let rotationMatrix = float4x4(rotationY: sin(timer))
-        uniforms.modelMatrix = translationMatrix * rotationMatrix
+        uniforms.viewMatrix = float4x4(translation: [0, 0, -3]).inverse
+        model.position.y = -0.6
+        model.rotation.y = sin(timer)
+        uniforms.modelMatrix = model.transform.modelMatrix
         
         renderEncoder.setVertexBytes(
             &uniforms,
