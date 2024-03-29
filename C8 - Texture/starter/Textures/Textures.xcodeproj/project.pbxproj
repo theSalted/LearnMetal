@@ -24,6 +24,7 @@
 		824A1AF22AA83518009BCA63 /* VertexDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824A1AF12AA83518009BCA63 /* VertexDescriptor.swift */; };
 		827621AE2AA8779800CE91D1 /* Vertex.metal in Sources */ = {isa = PBXBuildFile; fileRef = 827621AD2AA8779800CE91D1 /* Vertex.metal */; };
 		827621B02AA8779E00CE91D1 /* Fragment.metal in Sources */ = {isa = PBXBuildFile; fileRef = 827621AF2AA8779E00CE91D1 /* Fragment.metal */; };
+		8EC9847F2BB561A7001FBADA /* TextureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC9847E2BB561A7001FBADA /* TextureController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		824A1AF12AA83518009BCA63 /* VertexDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertexDescriptor.swift; sourceTree = "<group>"; };
 		827621AD2AA8779800CE91D1 /* Vertex.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Vertex.metal; sourceTree = "<group>"; };
 		827621AF2AA8779E00CE91D1 /* Fragment.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Fragment.metal; sourceTree = "<group>"; };
+		8EC9847E2BB561A7001FBADA /* TextureController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				824770E32AA7FA0B0095AB72 /* TexturesApp.swift */,
+				8EC9847E2BB561A7001FBADA /* TextureController.swift */,
 				824770F62AA7FDDA0095AB72 /* Renderer.swift */,
 				822EF52E2AA86872008CC2C8 /* Rendering.swift */,
 				824A1AF12AA83518009BCA63 /* VertexDescriptor.swift */,
@@ -242,6 +245,7 @@
 				822EF52B2AA86608008CC2C8 /* Model.swift in Sources */,
 				824A1AF22AA83518009BCA63 /* VertexDescriptor.swift in Sources */,
 				822EF5342AA87342008CC2C8 /* Transform.swift in Sources */,
+				8EC9847F2BB561A7001FBADA /* TextureController.swift in Sources */,
 				822435492AAD5217005A93D6 /* Primitive.swift in Sources */,
 				824770F72AA7FDDA0095AB72 /* Renderer.swift in Sources */,
 				822EF5292AA865D2008CC2C8 /* MathLibrary.swift in Sources */,
