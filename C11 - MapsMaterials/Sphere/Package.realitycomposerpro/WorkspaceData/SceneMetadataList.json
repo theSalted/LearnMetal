@@ -1,0 +1,79 @@
+{
+  "879161F2-2BE8-4C65-BB74-D91D443C3A87" : {
+    "objectMetadataList" : [
+      [
+        "879161F2-2BE8-4C65-BB74-D91D443C3A87",
+        "Root",
+        "starter_sphere",
+        "Geom"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "879161F2-2BE8-4C65-BB74-D91D443C3A87",
+        "Root",
+        "starter_sphere",
+        "Geom",
+        "brick_sphere",
+        "Geom"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "879161F2-2BE8-4C65-BB74-D91D443C3A87",
+        "Root",
+        "starter_sphere",
+        "Geom",
+        "brick_sphere"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "879161F2-2BE8-4C65-BB74-D91D443C3A87",
+        "Root",
+        "starter_sphere",
+        "Materials"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "879161F2-2BE8-4C65-BB74-D91D443C3A87",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "879161F2-2BE8-4C65-BB74-D91D443C3A87",
+        "Root",
+        "starter_sphere",
+        "Geom",
+        "brick_sphere",
+        "Geom",
+        "Sphere"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "879161F2-2BE8-4C65-BB74-D91D443C3A87",
+        "Root",
+        "starter_sphere"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  }
+}
