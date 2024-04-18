@@ -86,8 +86,9 @@ struct TiledDeferredRenderPass: RenderPass {
         depthTexture = Self.makeTexture(
             size: size,
             pixelFormat: .depth32Float_stencil8,
-            label: "Depth and Stencil Texture",
+            label: "Depth Texture",
             storageMode: .memoryless)
+        
     }
     
     func draw(
@@ -177,7 +178,6 @@ struct TiledDeferredRenderPass: RenderPass {
             &uniforms,
             length: MemoryLayout<Uniforms>.stride,
             index: UniformsBuffer.index)
-        
         drawSunLight(
             renderEncoder: renderEncoder,
             scene: scene,
