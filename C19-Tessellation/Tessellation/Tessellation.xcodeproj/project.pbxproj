@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		820CC5AA2AC7D38A0005BEF7 /* Tessellation.metal in Sources */ = {isa = PBXBuildFile; fileRef = 820CC5A92AC7D38A0005BEF7 /* Tessellation.metal */; };
 		822EF5292AA865D2008CC2C8 /* MathLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822EF5282AA865D2008CC2C8 /* MathLibrary.swift */; };
 		824172572AC65C1400CB2A91 /* Quad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824172562AC65C1400CB2A91 /* Quad.swift */; };
 		8241725A2AC65C5400CB2A91 /* TextureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824172592AC65C5400CB2A91 /* TextureController.swift */; };
@@ -26,10 +25,10 @@
 		824771002AA80C930095AB72 /* MetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824770FF2AA80C930095AB72 /* MetalView.swift */; };
 		8282C1C52AB5B7CD001A3850 /* Pipelines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8282C1C42AB5B7CD001A3850 /* Pipelines.swift */; };
 		82E5D2812ABC31B4000D3F89 /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E5D2802ABC31B4000D3F89 /* Options.swift */; };
+		8E67FD862BD8F5D200327E13 /* Tessellation.metal in Sources */ = {isa = PBXBuildFile; fileRef = 8E67FD852BD8F5D200327E13 /* Tessellation.metal */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		820CC5A92AC7D38A0005BEF7 /* Tessellation.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Tessellation.metal; sourceTree = "<group>"; };
 		822EF5282AA865D2008CC2C8 /* MathLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathLibrary.swift; sourceTree = "<group>"; };
 		822EF5322AA869E4008CC2C8 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		824172562AC65C1400CB2A91 /* Quad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quad.swift; sourceTree = "<group>"; };
@@ -51,6 +50,7 @@
 		824770FF2AA80C930095AB72 /* MetalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalView.swift; sourceTree = "<group>"; };
 		8282C1C42AB5B7CD001A3850 /* Pipelines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pipelines.swift; sourceTree = "<group>"; };
 		82E5D2802ABC31B4000D3F89 /* Options.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
+		8E67FD852BD8F5D200327E13 /* Tessellation.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Tessellation.metal; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +78,7 @@
 			children = (
 				822EF5322AA869E4008CC2C8 /* Common.h */,
 				824172682AC65E6B00CB2A91 /* Shaders.metal */,
-				820CC5A92AC7D38A0005BEF7 /* Tessellation.metal */,
+				8E67FD852BD8F5D200327E13 /* Tessellation.metal */,
 			);
 			path = Shaders;
 			sourceTree = "<group>";
@@ -261,7 +261,7 @@
 				822EF5292AA865D2008CC2C8 /* MathLibrary.swift in Sources */,
 				824770E62AA7FA0B0095AB72 /* ContentView.swift in Sources */,
 				824172692AC65E6B00CB2A91 /* Shaders.metal in Sources */,
-				820CC5AA2AC7D38A0005BEF7 /* Tessellation.metal in Sources */,
+				8E67FD862BD8F5D200327E13 /* Tessellation.metal in Sources */,
 				824172572AC65C1400CB2A91 /* Quad.swift in Sources */,
 				824771002AA80C930095AB72 /* MetalView.swift in Sources */,
 				8241725F2AC65C9F00CB2A91 /* InputController.swift in Sources */,
@@ -397,6 +397,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Tessellation/Tessellation.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
@@ -420,7 +421,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = kodeco.Tessellation;
+				PRODUCT_BUNDLE_IDENTIFIER = app.yuhao.learn.tessellation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -436,6 +437,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Tessellation/Tessellation.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
@@ -459,7 +461,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = kodeco.Tessellation;
+				PRODUCT_BUNDLE_IDENTIFIER = app.yuhao.learn.tessellation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
