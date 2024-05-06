@@ -63,12 +63,12 @@ float distToScene(Ray r) {
 float3 getNormal(Ray ray) {
     float2 eps = float2(0.001, 0.0);
     float3 n = float3(
-        distToScene(Ray{ray.origin + eps.xyy, ray.direction}) -
-        distToScene(Ray{ray.origin - eps.xyy, ray.direction}),
-        distToScene(Ray{ray.origin + eps.yxy, ray.direction}) -
-        distToScene(Ray{ray.origin - eps.yxy, ray.direction}),
-        distToScene(Ray{ray.origin + eps.yyx, ray.direction}) -
-        distToScene(Ray{ray.origin - eps.yyx, ray.direction}));
+                      distToScene(Ray{ray.origin + eps.xyy, ray.direction}) -
+                      distToScene(Ray{ray.origin - eps.xyy, ray.direction}),
+                      distToScene(Ray{ray.origin + eps.yxy, ray.direction}) -
+                      distToScene(Ray{ray.origin - eps.yxy, ray.direction}),
+                      distToScene(Ray{ray.origin + eps.yyx, ray.direction}) -
+                      distToScene(Ray{ray.origin - eps.yyx, ray.direction}));
     return normalize(n);
 }
 
@@ -92,7 +92,7 @@ float distanceToScene(float2 point) {
         float(0.04)
     };
     float2 mod = point - 0.1 * floor(point / 0.1);
-
+    
     float d2r2 = distanceToRectangle(mod, r2);
     
     float diff = differenceOperator(d2r1, d2r2);
@@ -124,25 +124,35 @@ float lighting(Ray ray, float3 normal, Light light) {
     return  diffuse + specular;
 }
 
-float shadow(Ray ray, Light light) {
-    float3 lightDir = light.position - ray.origin;
+float shadow(Ray ray, float k, Light l) {
+    float3 lightDir = l.position - ray.origin;
     float lightDis = length(lightDir);
     lightDir = normalize(lightDir);
-    float distAlongRay = 0.01;
+    
+    float light = 1.0;
+    float eps = 0.1;
+    
+    float distAlongRay = eps * 2.0;
+    
     for (int i = 0; i < 100; i++) {
         Ray lightRay = Ray {ray.origin + lightDir * distAlongRay, lightDir};
+        
         float dist = distToScene(lightRay);
-        if (dist < 0.001) { return  0.0; }
-        distAlongRay += dist;
+        
+        light = min(light, 1.0 - (eps - dist) / eps);
+        
+        distAlongRay += dist * 0.5;
+        eps += dist * k;
+        
         if (distAlongRay > lightDis ) { break; }
     }
-    return 1.0;
+    return max(light, 0.0);
 }
 
 kernel void compute(
-    texture2d<float, access::write> output [[texture(0)]],
-    constant float &time [[buffer(0)]],
-    uint2 gid [[thread_position_in_grid]])
+                    texture2d<float, access::write> output [[texture(0)]],
+                    constant float &time [[buffer(0)]],
+                    uint2 gid [[thread_position_in_grid]])
 {
     int width = output.get_width();
     int height = output.get_height();
@@ -156,27 +166,38 @@ kernel void compute(
     uv.y = -uv.y;
     Ray ray = Ray { float3(0., 4., -12), normalize(float3(uv, 1.))};
     
-    for (int i = 0; i < 100; i++) {
+    
+    bool hit = false;
+    for (int i = 0; i < 200; i++) {
         float dist = distToScene(ray);
-        
         if (dist < 0.001) {
-            color = 1.0;
-            break;;
+            hit = true;
+            break;
         }
         ray.origin += ray.direction * dist;
     }
+    // 2
+    float3 col = 1.0;
+    // 3
+    if (!hit) {
+        col = float3(0.8, 0.5, 0.5);
+    } else {
+        float3 n = getNormal(ray);
+        Light light = Light{float3(sin(time) * 10.0, 5.0,
+                                   cos(time) * 10.0)};
+        float l = lighting(ray, n, light);
+        float s = shadow(ray, 0.3, light);
+        col = col * l * s;
+    }
+    // 4
+    Light light2 = Light{float3(0.0, 5.0, -15.0)};
+    float3 lightRay = normalize(light2.position - ray.origin);
+    float fl = max(0.0, dot(getNormal(ray), lightRay) / 2.0);
+    col = col + fl;
+    color = float4(col, 1.0);
     
-    float3 n = getNormal(ray);
-    
-    Light light = Light{ float3(sin(time) * 10.0, 5.0, cos(time) * 10.0)};
-    float l = lighting(ray, n, light);
-    
-    float s = shadow(ray, light);
-    
-    color = float4(color.xyz * l * s, 1.0);
     
     
-
     // Edit end
     output.write(color, gid);
 }
