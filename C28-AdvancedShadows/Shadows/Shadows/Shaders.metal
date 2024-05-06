@@ -152,17 +152,28 @@ kernel void compute(
     
     // Edit start
     
-    float d2scene = distanceToScene(uv);
-    bool inside = d2scene < 0.0;
-    color = inside ? float4(0.8, 0.5, 0.5, 1.0) : float4(0.9, 0.9, 0.8, 1.0);
+    color = 0;
+    uv.y = -uv.y;
+    Ray ray = Ray { float3(0., 4., -12), normalize(float3(uv, 1.))};
     
-    float2 lightPos = 2.8 * float2(sin(time), cos(time));
-    float dist2light = length(lightPos - uv);
-    color *= max(0.3, 2.0 - dist2light);
+    for (int i = 0; i < 100; i++) {
+        float dist = distToScene(ray);
+        
+        if (dist < 0.001) {
+            color = 1.0;
+            break;;
+        }
+        ray.origin += ray.direction * dist;
+    }
     
-    float shadow = getShadow(uv, lightPos);
-    color *= 2;
-    color *= shadow * .5 + .5;
+    float3 n = getNormal(ray);
+    
+    Light light = Light{ float3(sin(time) * 10.0, 5.0, cos(time) * 10.0)};
+    float l = lighting(ray, n, light);
+    
+    float s = shadow(ray, light);
+    
+    color = float4(color.xyz * l * s, 1.0);
     
     
 
