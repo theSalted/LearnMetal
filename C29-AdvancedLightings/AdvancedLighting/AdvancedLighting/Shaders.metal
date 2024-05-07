@@ -47,6 +47,14 @@ float2 distToScene(Ray r) {
     Sphere s = Sphere{float3(0.0, 6.0, 0.0), 6.0};
     float dts = distToSphere(r, s);
     float object = (dtp > dts) ? SphereObj : PlaneObj;
+    if (object == SphereObj) {
+        float3 pos = r.origin;
+        pos += float3(sin(pos.y * 5.0),
+                      sin(pos.z * 5.0),
+                      sin(pos.x * 5.0)) * 0.05;
+        Ray ray = Ray{pos, r.dir};
+        dts = distToSphere(ray, s);
+    }
     float dist = unionOp(dts, dtp);
     return float2(dist, object);
 }
@@ -145,7 +153,7 @@ kernel void compute(
                 cam = refractRay(cam, normal, eps, ior);
             }
         }
-        cam.ray.origin += cam.ray.dir * dist.x;
+        cam.ray.origin += cam.ray.dir * dist.x * 0.5;
         eps += cam.rayDivergence * dist.x;
     }
     col *= mix(float3(0.8, 0.8, 0.4), float3(0.4, 0.4, 1.0), cam.ray.dir.y);
