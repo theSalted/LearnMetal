@@ -11,7 +11,7 @@ typedef struct {
 } Uniforms;
 
 typedef struct {
-    uint tiling;
+    uint32_t tiling;
 } Params;
 
 typedef enum {
@@ -47,7 +47,7 @@ typedef struct {
 typedef struct {
     matrix_float4x4 modelMatrix;
     matrix_float3x3 normalMatrix;
-    uint tiling;
+    uint32_t tiling;
 } ModelParams;
 
 #endif /* Common_h */

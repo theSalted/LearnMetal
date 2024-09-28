@@ -42,9 +42,9 @@ typedef struct {
 } Uniforms;
 
 typedef struct {
-    uint width;
-    uint height;
-    uint tiling;
+    uint32_t width;
+    uint32_t height;
+    uint32_t tiling;
 } Params;
 
 typedef enum {

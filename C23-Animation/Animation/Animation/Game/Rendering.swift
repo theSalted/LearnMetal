@@ -11,7 +11,7 @@ extension Model {
         // make the structures mutable
         var uniforms = vertex
         var params = fragment
-        params.tiling = tiling
+        params.tiling = Int32(tiling)
         
         encoder.setFragmentBytes(
             &params,

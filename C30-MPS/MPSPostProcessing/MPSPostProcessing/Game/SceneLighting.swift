@@ -33,26 +33,26 @@
 import Foundation
 
 struct SceneLighting {
-  static func buildDefaultLight() -> Light {
-    var light = Light()
-    light.position = [0, 0, 0]
-    light.color = float3(repeating: 1.0)
-    light.specularColor = float3(repeating: 0.6)
-    light.attenuation = [1, 0, 0]
-    light.type = Sun
-    return light
-  }
-
-  let sunlight: Light = {
-    var light = Self.buildDefaultLight()
-    light.position = normalize([-6, 8, 4])
-    light.color = float3(repeating: 1.0)
-    return light
-  }()
-
-  var lights: [Light] = []
-
-  init() {
-    lights = [sunlight]
-  }
+    static func buildDefaultLight() -> Light {
+        var light = Light()
+        light.position = [0, 0, 0]
+        light.color = float3(repeating: 1.0)
+        light.specularColor = float3(repeating: 0.6)
+        light.attenuation = [1, 0, 0]
+        light.type = Sun
+        return light
+    }
+    
+    let sunlight: Light = {
+        var light = Self.buildDefaultLight()
+        light.position = normalize([-6, 8, 4])
+        light.color = float3(repeating: 1.0)
+        return light
+    }()
+    
+    var lights: [Light] = []
+    
+    init() {
+        lights = [sunlight]
+    }
 }

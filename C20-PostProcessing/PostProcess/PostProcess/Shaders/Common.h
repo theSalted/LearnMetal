@@ -14,10 +14,10 @@ typedef struct {
 } Uniforms;
 
 typedef struct {
-    uint width;
-    uint height;
-    uint tiling;
-    uint lightCount;
+    uint32_t width;
+    uint32_t height;
+    uint32_t tiling;
+    uint32_t lightCount;
     vector_float3 cameraPosition;
     float scaleFactor;
     bool alphaTesting;

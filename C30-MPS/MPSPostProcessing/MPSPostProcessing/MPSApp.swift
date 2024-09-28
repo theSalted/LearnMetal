@@ -34,10 +34,10 @@ import SwiftUI
 
 @main
 struct MPSApp: App {
-  var body: some Scene {
-    WindowGroup {
-      ContentView()
-        .navigationTitle("Metal Performance Shaders")
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+                .navigationTitle("Metal Performance Shaders")
+        }
     }
-  }
 }

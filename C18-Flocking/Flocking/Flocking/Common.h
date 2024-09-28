@@ -22,7 +22,7 @@ struct Params {
     float separationRadius;
     float predatorRadius;
     float predatorSeek;
-    uint particleCount;
+    uint32_t particleCount;
 };
 
 #endif /* Common_h */
